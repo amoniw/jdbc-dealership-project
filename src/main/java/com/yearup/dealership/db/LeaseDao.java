@@ -21,10 +21,10 @@ public class LeaseDao {
            Connection conn = dataSource.getConnection():
            PreparedStatement pstmt = conn.prepareStatement(sql)
            ){
-           pstmt.setInt(1, leaseContract.getLeaseid();
-           pstmt.setString(2, leaseContract.getCustomerName();
-           pstmt.setDouble(3, leaseContact.getAmount();
-           pstmt.setDate(4, leaseContract.getContractDate();
+           pstmt.setInt(1, addleaseContract.getLeaseid();
+           pstmt.setString(2, addleaseContract.getCustomerName();
+           pstmt.setDouble(3, addleaseContact.getAmount();
+           pstmt.setDate(4, addleaseContract.getContractDate();
            
            pstmt.excuteUpdate();
            System.out.println("Lease contract added!");
