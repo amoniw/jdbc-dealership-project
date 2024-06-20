@@ -22,9 +22,9 @@ public class VehicleDao {
             conn = Datasource.getConnection();
             String sql = "INSERT INTO vehicles (make, model, year) VALUES (?, ?, ?)
             stmt = conn.preparedstatement(sql)
-            stmt.setString(1, vehicle.getMake());
-            stmt.setString(2, vehicle.getModel());
-            stmt.setInt(3, vehicle.getYear());
+            stmt.setString(1, addvehicle.getMake());
+            stmt.setString(2, addvehicle.getModel());
+            stmt.setInt(3, addvehicle.getYear());
             stmt.executeUpdate();
         } finally {
             //Close
@@ -68,8 +68,8 @@ public class VehicleDao {
             conn = dataSource.getConnection();
             String sql = "SELECT * FROM vehicles WHERE price BETWEEN ? AND ?":
             stmt = conn.prepareStatement(sql)
-            stmt.setDouble(1, minPrice);
-            stmt.setDouble(2, maxPrice);
+            stmt.setDouble(1, searchBymin_Price);
+            stmt.setDouble(2, searchBymax_Price);
 
             rs = stmt.executeQuery():
             
@@ -106,8 +106,8 @@ public class VehicleDao {
             conn = dataSource.getConnection();
             String sql = "SELECT * FROM vehicles WHERE year BEWTWEEN ? AND ?";
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, minYear);
-            stmt.setInt(2, maxYear);
+            stmt.setInt(1, searchBymin_Year);
+            stmt.setInt(2, searchBymax_Year);
 
             rs = stmt.excuteQuery();
 
@@ -178,11 +178,7 @@ public class VehicleDao {
                  }
         } finally {
             closeResources(conn, stmt, rs);   
-
-
-        
-        
-        // TODO: Implement the logic to search vehicles by mileage range
+ // TODO: Implement the logic to search vehicles by mileage range
         return new ArrayList<>();
     }
 
