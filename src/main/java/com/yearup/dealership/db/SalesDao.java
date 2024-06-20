@@ -21,10 +21,10 @@ public class SalesDao {
             Connection conn = dataSource.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)
             ) {
-            pstmt.setInt(1, salesContract.getContractId());
-            pstmt.setString(2, salesContract.getCustomerName());
-            pstmt.setDouble(3, salesContract.getAmount());
-            pstmt.setDate(4, salesContract.getContractDate());
+            pstmt.setInt(1, addsalesContract.getContractId());
+            pstmt.setString(2, addsalesContract.getCustomerName());
+            pstmt.setDouble(3, addsalesContract.getAmount());
+            pstmt.setDate(4, addsalesContract.getContractDate());
 
             pstmt.executeUpdate();
             System.out.println("Sales contract added!");
