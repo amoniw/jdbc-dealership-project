@@ -38,26 +38,122 @@ public class VehicleDao {
     }
 
     public void removeVehicle(String VIN) {
-        
+        Connection conn = null;
+        PreparedStatement stm = null;
+
+        try {
+            conn = dataSource.getConnection();
+            String sql = "DELETE FROM vehicles WHERE vin = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1,VIN);
+
+            int rowsAffected = stmt.excuteUpdate();
+            if (rowsAffected = = 0) {
+                System.out.println("No vehicle found with VIN " + VIN);
+            } else {
+                System.out.println("Vehicle with VIN " + VIN + " removed");
+            }
+        } finally {
+            closeResources(conn, stmt, nll);
         // TODO: Implement the logic to remove a vehicle
     }
 
     public List<Vehicle> searchByPriceRange(double minPrice, double maxPrice) {
+        List<Vehicle> vehicles = new ArrayList<>():
+        Connection conn null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = dataSource.getConnection();
+            String sql = "SELECT * FROM vehicles WHERE price BETWEEN ? AND ?":
+            stmt = conn.prepareStatement(sql)
+            stmt.setDouble(1, minPrice);
+            stmt.setDouble(2, maxPrice);
+
+            rs = stmt.executeQuery():
+            
         // TODO: Implement the logic to search vehicles by price range
         return new ArrayList<>();
     }
 
     public List<Vehicle> searchByMakeModel(String make, String model) {
+         List<Vehicle> searchByMakeModel = new ArrayList<>():
+        Connection conn null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = dataSource.getConnection();
+            String sql = "SELECT * FROM vehicles WHERE  MAKE ? MODEL ?":
+            stmt = conn.prepareStatement(sql)
+            stmt.setDouble(1, String make);
+            stmt.setDouble(2, String model);
+
+            rs = stmt.executeQuery():
+
         // TODO: Implement the logic to search vehicles by make and model
         return new ArrayList<>();
     }
 
     public List<Vehicle> searchByYearRange(int minYear, int maxYear) {
+        List<Vehicle> vehicles = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs - null;
+
+        try {
+            conn = dataSource.getConnection();
+            String sql = "SELECT * FROM vehicles WHERE year BEWTWEEN ? AND ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, minYear);
+            stmt.setInt(2, maxYear);
+
+            rs = stmt.excuteQuery();
+
+         while (rs.next()) {
+             String vin = rs.getString("vin");
+             String make = rs.getString("make");
+             String model = rs.getString("model")    
+             int year = rs.getInt("year")
+             double price = rs.getDouble("price");
+
+             Vehicle vehicle = new Vehicle(vin, make , model, year, price);
+         }
+        } finally {
+            closeResources(conn, stmt, rs);
+        }
         // TODO: Implement the logic to search vehicles by year range
         return new ArrayList<>();
     }
 
     public List<Vehicle> searchByColor(String color) {
+         List<Vehicle> vehicles = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs - null;
+
+        try {
+         conn = dataSource.getConnection();
+            String sql = "SELECT * FROM vehicles WHERE color = ?
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, color);
+
+            rs = stmt.exexcuteQuery();
+
+             while (rs.next()) {
+             String vin = rs.getString("vin");
+             String make = rs.getString("make");
+             String model = rs.getString("model")    
+             int year = rs.getInt("year")
+             double price = rs.getDouble("price");
+
+             Vehicle vehicle = new Vehicle(vin, make, model, year, price);
+             vehicles.add(vehicle):
+                 }
+        } finally {
+            closeResources(conn, stmt, rs);
+        
         // TODO: Implement the logic to search vehicles by color
         return new ArrayList<>();
     }
