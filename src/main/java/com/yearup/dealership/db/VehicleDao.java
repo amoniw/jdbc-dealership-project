@@ -15,10 +15,30 @@ public class VehicleDao {
     }
 
     public void addVehicle(Vehicle vehicle) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = Datasource.getConnection();
+            String sql = "INSERT INTO vehicles (make, model, year) VALUES (?, ?, ?)
+            stmt = conn.preparedstatement(sql)
+            stmt.setString(1, vehicle.getMake());
+            stmt.setString(2, vehicle.getModel());
+            stmt.setInt(3, vehicle.getYear());
+            stmt.executeUpdate();
+        } finally {
+            //Close
+            if (stmt != null) {
+                stmt.close():
+            }
+            if (conn != null) {
+                conn.close():
+            }        
         // TODO: Implement the logic to add a vehicle
     }
 
     public void removeVehicle(String VIN) {
+        
         // TODO: Implement the logic to remove a vehicle
     }
 
